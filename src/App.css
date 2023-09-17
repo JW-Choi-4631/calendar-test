@@ -115,9 +115,9 @@
     letter-spacing: 1.25%;
   }
 
-  #day-list li {
+  /* #day-list li {
     border: 1px solid black;
-  }
+  } */
 
   #date-list {
     display: grid;
@@ -133,7 +133,6 @@
     width: 100%;
     height: 100%;
     padding: 5px;
-    border: 1px solid black;
   }
 
   .day span {
