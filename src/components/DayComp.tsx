@@ -14,39 +14,39 @@ function DayComp({ year, month, date, day, today }) {
 
   if (newDate.getTime() === check.getTime()) {
     return (
-      <div className="day" onClick={onClick} style={{ backgroundColor: "black", color: "white" }}>
-        {date}
+      <div className="day" onClick={onClick}>
+        <span style={{ backgroundColor: "black", color: "white" }}>{date}</span>
       </div>
     );
   }
 
   if (newDate < check) {
     return (
-      <div className="day" onClick={onClick} style={{ color: "#DDDDDD" }}>
-        {date}
+      <div className="day" onClick={onClick}>
+        <span style={{ color: "#DDDDDD" }}>{date}</span>
       </div>
     );
   }
 
   if (day === 0) {
     return (
-      <div className="day" onClick={onClick} style={{ color: "red" }}>
-        {date}
+      <div className="day" onClick={onClick}>
+        <span style={{ color: "red" }}>{date}</span>
       </div>
     );
   }
 
   if (day === 6) {
     return (
-      <div className="day" onClick={onClick} style={{ color: "blue" }}>
-        {date}
+      <div className="day" onClick={onClick}>
+        <span style={{ color: "blue" }}>{date}</span>
       </div>
     );
   }
 
   return (
     <div className="day" onClick={onClick}>
-      {date}
+      <span>{date}</span>
     </div>
   );
 }
