@@ -95,6 +95,8 @@ function App() {
     calendarArray[j] = { date: i, day };
   }
 
+  const eventDate = [new Date(2023, 8, 4), new Date(2023, 8, 11), new Date(2023, 8, 19)];
+
   return (
     <>
       <main>
@@ -122,7 +124,7 @@ function App() {
           <div id="date-list">
             {calendarArray.map((item, index) => {
               if (item === "") return <div key={index} />;
-              return <DayComp key={index} year={year} month={month} date={item.date} day={item.day} today={today} />;
+              return <DayComp key={index} year={year} month={month} date={item.date} day={item.day} today={today} eventDate={eventDate} />;
             })}
           </div>
         </section>
