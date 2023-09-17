@@ -21,6 +21,7 @@ function DayComp({ year, month, date, day, today, eventDate }) {
 
   // 오늘 이전 날짜
   if (newDate < check) {
+    // 이벤트가 있는 날짜
     if (hasEvent()) {
       return (
         <div className="day" onClick={onClick}>
@@ -35,6 +36,7 @@ function DayComp({ year, month, date, day, today, eventDate }) {
     );
   }
 
+  // 이벤트가 있는 날짜
   if (hasEvent()) {
     return (
       <div className="day" onClick={onClick}>
@@ -43,7 +45,7 @@ function DayComp({ year, month, date, day, today, eventDate }) {
     );
   }
 
-  // 오늘
+  // 오늘 날짜
   if (newDate.getTime() === check.getTime()) {
     return (
       <div className="day" onClick={onClick}>
