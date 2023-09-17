@@ -1,12 +1,13 @@
 import React from "react";
 
-function DayComp({ year, month, date, day, today, eventDate }) {
+function DayComp({ year, month, date, day, today, eventDate = [], getDate = false }) {
   const newDate = new Date(year, month, date);
   const check = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
   const hasEvent = () => {
+    if (eventDate.length === 0) return false;
     let result = false;
-    eventDate.map((event) => {
+    eventDate.forEach((event) => {
       if (event.getTime() === newDate.getTime()) {
         result = true;
       }
@@ -14,10 +15,11 @@ function DayComp({ year, month, date, day, today, eventDate }) {
     return result;
   };
 
-  const onClick = () => {
-    console.log(eventDate);
-    console.log(hasEvent());
-  };
+  const onClick = getDate
+    ? () => {
+        console.log(newDate);
+      }
+    : () => {};
 
   // 오늘 이전 날짜
   if (newDate < check) {
