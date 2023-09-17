@@ -6,6 +6,7 @@ function App() {
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth());
 
+  // 달 이동 시 리랜더링 되도록 설정
   const nextMonth = () => {
     setMonth((prev) => {
       if (prev === 11) {
@@ -15,7 +16,6 @@ function App() {
       return prev + 1;
     });
   };
-
   const prevMonth = () => {
     setMonth((prev) => {
       if (prev === 0) {
@@ -26,9 +26,9 @@ function App() {
     });
   };
 
+  // 달 설정 및 달별 총 날짜 결정
   let dayCount = 31;
   let currentMonth;
-
   switch (month + 1) {
     default:
       currentMonth = "Jan";
@@ -85,15 +85,13 @@ function App() {
       break;
   }
 
+  // 달력에 날짜 찍기
   const startDate = new Date(year, month, 1);
-
   const startDay = startDate.getDay();
-
-  // console.log(month, startDay, dayCount);
-
   const calendarArray = new Array(30).fill("");
   for (let i = 1, j = startDay; i <= dayCount; i++, j++) {
-    calendarArray[j] = i;
+    const day = new Date(year, month, i).getDay();
+    calendarArray[j] = { date: i, day };
   }
 
   return (
@@ -119,7 +117,7 @@ function App() {
           <div id="date-list">
             {calendarArray.map((item, index) => {
               if (item === "") return <div key={index} />;
-              return <DayComp key={index} year={year} month={month} day={item} today={today} />;
+              return <DayComp key={index} year={year} month={month} date={item.date} day={item.day} today={today} />;
             })}
           </div>
         </section>
@@ -130,36 +128,53 @@ function App() {
 
 export default App;
 
-function DayComp({ year, month, day, today }) {
-  const date = new Date(year, month, day);
+function DayComp({ year, month, date, day, today }) {
+  const newDate = new Date(year, month, date);
   const check = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
   const onClick = () => {
     console.log(today, check);
-    console.log(date.getTime());
+    console.log(newDate.getTime());
     console.log(check.getTime());
-    console.log(date);
+    console.log(newDate);
+    console.log(day);
   };
 
-  if (date.getTime() === check.getTime()) {
+  if (newDate.getTime() === check.getTime()) {
     return (
       <div className="day" onClick={onClick} style={{ backgroundColor: "black", color: "white" }}>
-        {day}
+        {date}
       </div>
     );
   }
 
-  if (date < check) {
+  if (newDate < check) {
     return (
       <div className="day" onClick={onClick} style={{ color: "#DDDDDD" }}>
-        {day}
+        {date}
+      </div>
+    );
+  }
+
+  if (day === 0) {
+    return (
+      <div className="day" onClick={onClick} style={{ color: "red" }}>
+        {date}
+      </div>
+    );
+  }
+
+  if (day === 6) {
+    return (
+      <div className="day" onClick={onClick} style={{ color: "blue" }}>
+        {date}
       </div>
     );
   }
 
   return (
     <div className="day" onClick={onClick}>
-      {day}
+      {date}
     </div>
   );
 }
