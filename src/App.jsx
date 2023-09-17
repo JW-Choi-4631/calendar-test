@@ -10,11 +10,9 @@ function App() {
   const [canEvent, setCanEvent] = useState("false");
 
   const onChangeChoose = (event) => {
-    console.log("change-choose");
     setCanChoose(event.target.value);
   };
   const onChangeEvent = (event) => {
-    console.log("change-event");
     setCanEvent(event.target.value);
   };
   // 달 이동 시 리랜더링 되도록 설정
