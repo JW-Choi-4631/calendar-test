@@ -119,7 +119,7 @@ function App() {
           <div id="date-list">
             {calendarArray.map((item, index) => {
               if (item === "") return <div key={index} />;
-              return <DayComp key={index} year={year} month={month} day={item} />;
+              return <DayComp key={index} year={year} month={month} day={item} today={today} />;
             })}
           </div>
         </section>
@@ -130,11 +130,23 @@ function App() {
 
 export default App;
 
-function DayComp({ year, month, day }) {
+function DayComp({ year, month, day, today }) {
   const date = new Date(year, month, day);
+  const check = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
   const onClick = () => {
+    console.log(today, check);
     console.log(date);
   };
+
+  if (date < check) {
+    return (
+      <div className="day" onClick={onClick} style={{ color: "#DDDDDD" }}>
+        {day}
+      </div>
+    );
+  }
+
   return (
     <div className="day" onClick={onClick}>
       {day}
