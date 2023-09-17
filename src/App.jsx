@@ -27,7 +27,7 @@ function App() {
     });
   };
 
-  // 달 설정 및 달별 총 날짜 결정
+  // 달별 이름 설정 및 달별 총 날짜 결정
   let dayCount = 31;
   let currentMonth;
   switch (month + 1) {
@@ -100,11 +100,15 @@ function App() {
       <main>
         <section id="calendar">
           <div id="year">
-            <div onClick={prevMonth}>{"<"}</div>
+            <div onClick={prevMonth} style={{ cursor: "pointer" }}>
+              &lt;
+            </div>
             <span>
-              {currentMonth} {year}
+              {currentMonth}&nbsp;&nbsp;{year}
             </span>
-            <div onClick={nextMonth}>{">"}</div>
+            <div onClick={nextMonth} style={{ cursor: "pointer" }}>
+              &gt;
+            </div>
           </div>
           <ul id="day-list">
             <li>Sun</li>
