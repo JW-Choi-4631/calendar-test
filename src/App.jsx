@@ -136,8 +136,18 @@ function DayComp({ year, month, day, today }) {
 
   const onClick = () => {
     console.log(today, check);
+    console.log(date.getTime());
+    console.log(check.getTime());
     console.log(date);
   };
+
+  if (date.getTime() === check.getTime()) {
+    return (
+      <div className="day" onClick={onClick}>
+        <div style={{ width: "fit-content", borderRadius: "50%", backgroundColor: "black", color: "white" }}>{day}</div>
+      </div>
+    );
+  }
 
   if (date < check) {
     return (
