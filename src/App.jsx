@@ -6,7 +6,17 @@ function App() {
   const today = new Date();
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth());
+  const [canChoose, setCanChoose] = useState("false");
+  const [canEvent, setCanEvent] = useState("false");
 
+  const onChangeChoose = (event) => {
+    console.log("change-choose");
+    setCanChoose(event.target.value);
+  };
+  const onChangeEvent = (event) => {
+    console.log("change-event");
+    setCanEvent(event.target.value);
+  };
   // 달 이동 시 리랜더링 되도록 설정
   const nextMonth = () => {
     setMonth((prev) => {
@@ -95,10 +105,20 @@ function App() {
     calendarArray[j] = { date: i, day };
   }
 
-  // const eventDate = [new Date(2023, 8, 4), new Date(2023, 8, 11), new Date(2023, 8, 19)];
+  const eventDate = [new Date(2023, 8, 4), new Date(2023, 8, 11), new Date(2023, 8, 19)];
 
   return (
     <>
+      <div>
+        <select onChange={onChangeChoose}>
+          <option value={false}> - </option>
+          <option value={true}>날짜 선택 가능</option>
+        </select>
+        <select onChange={onChangeEvent}>
+          <option value={false}> - </option>
+          <option value={true}> 이벤트 보기 </option>
+        </select>
+      </div>
       <main>
         <section id="calendar">
           <div id="year">
@@ -124,7 +144,18 @@ function App() {
           <div id="date-list">
             {calendarArray.map((item, index) => {
               if (item === "") return <div key={index} />;
-              return <DayComp key={index} year={year} month={month} date={item.date} day={item.day} today={today} />;
+              return (
+                <DayComp
+                  key={index}
+                  year={year}
+                  month={month}
+                  date={item.date}
+                  day={item.day}
+                  today={today}
+                  eventDate={canEvent === "true" ? eventDate : []}
+                  getDate={canChoose === "true" ? true : false}
+                />
+              );
             })}
           </div>
         </section>

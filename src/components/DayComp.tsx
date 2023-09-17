@@ -1,13 +1,13 @@
 import React from "react";
 
-function DayComp({ year, month, date, day, today, eventDate = [], getDate = false }) {
+function DayComp({ year, month, date, day, today, eventDate = null, getDate = false }) {
   const newDate = new Date(year, month, date);
   const check = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
   const hasEvent = () => {
-    if (eventDate.length === 0) return false;
+    if (eventDate === null) return false;
     let result = false;
-    eventDate.forEach((event) => {
+    eventDate.map((event) => {
       if (event.getTime() === newDate.getTime()) {
         result = true;
       }
