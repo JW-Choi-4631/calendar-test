@@ -108,13 +108,13 @@ function App() {
             <div onClick={nextMonth}>{">"}</div>
           </div>
           <ul id="day-list">
-            <li>일</li>
-            <li>월</li>
-            <li>화</li>
-            <li>수</li>
-            <li>목</li>
-            <li>금</li>
-            <li>토</li>
+            <li>Sun</li>
+            <li>Mon</li>
+            <li>Tue</li>
+            <li>Wed</li>
+            <li>Thu</li>
+            <li>Fri</li>
+            <li>Sat</li>
           </ul>
           <div id="date-list">
             {calendarArray.map((item, index) => {
@@ -143,8 +143,8 @@ function DayComp({ year, month, day, today }) {
 
   if (date.getTime() === check.getTime()) {
     return (
-      <div className="day" onClick={onClick}>
-        <div style={{ width: "fit-content", borderRadius: "50%", backgroundColor: "black", color: "white" }}>{day}</div>
+      <div className="day" onClick={onClick} style={{ backgroundColor: "black", color: "white" }}>
+        {day}
       </div>
     );
   }
